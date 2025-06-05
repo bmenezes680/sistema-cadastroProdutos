@@ -1,23 +1,23 @@
-
-package com.mycompany.cad_product;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.net.URL;
 import java.util.ArrayList;
-
 
 public class Cad_Product {
     
     public static void main(String[] args) {
-        // Array(lista) para guardar os produtos cadastrados
-        ArrayList<Product> List_Product = new ArrayList<>(); 
         
+        //Lista para guardar os produtos cadastrados
+        ArrayList<Product> List_Product = new ArrayList<>();
+
+        //Objeto para o banco de dados
+        BancodeDados banco = new BancodeDados();
+
+
+        //INTERFACE
         //Criando a janela principal
         JFrame window =new JFrame("CADASTRO DE PRODUTOS"); 
-
         JPanel container=new JPanel();//
-
         container.setLayout(null);
         
         // Criação do titulo principal e das caixas de texto
@@ -92,6 +92,7 @@ public class Cad_Product {
                     }
                     Product produto = new Product(nome, preco, quantidade);
                     List_Product.add(produto);
+                    banco.cadastrar(produto);
 
                     JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
                     
@@ -271,14 +272,9 @@ public class Cad_Product {
                 text_field_1.setText("");//limpando o campo nome 
                 text_field_2.setText("");//limpando o campo preço 
                 text_field_3.setText("");//limpando o campo quantidade 
-
-             
-
     } 
 
-}); 
-
-       
+});
         container.setBackground(Color.GRAY);
         window.add(container);
         
@@ -286,5 +282,5 @@ public class Cad_Product {
         
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+}
 }
