@@ -3,18 +3,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+
 public class Cad_Product {
     
     public static void main(String[] args) {
-        
-        //Lista para guardar os produtos cadastrados
+
+    //Lista para guardar os produtos cadastrados
         ArrayList<Product> List_Product = new ArrayList<>();
 
-        //Objeto para o banco de dados
-        BancodeDados banco = new BancodeDados();
-
-
-        //INTERFACE
+         //INTERFACE
         //Criando a janela principal
         JFrame window =new JFrame("CADASTRO DE PRODUTOS"); 
         JPanel container=new JPanel();//
@@ -69,7 +66,7 @@ public class Cad_Product {
         
         btn_cad.setFont(new Font("cortana", Font.PLAIN, 20)); 
         btn_cad.setBackground(Color.GREEN);
-        btn_cad.setBounds(600,143,130,30);
+        btn_cad.setBounds(510,160,130,30);
         window.add(btn_cad);
         
         btn_cad.addActionListener(new ActionListener() {
@@ -92,13 +89,14 @@ public class Cad_Product {
                     }
                     Product produto = new Product(nome, preco, quantidade);
                     List_Product.add(produto);
-                    banco.cadastrar(produto);
+                    BancodeDados.cadastrar(produto);
 
                     JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
                     
                     text_field_1.setText("");
                     text_field_2.setText("");
                     text_field_3.setText("");
+                
                     
                     StringBuilder sb = new StringBuilder();
                     for (Product p : List_Product) {
@@ -111,6 +109,7 @@ public class Cad_Product {
                 }
             }
         });
+
         
         JButton btn_saveChanges = new JButton("Salvar alterações");
         btn_saveChanges.setFont(new Font("cortana", Font.PLAIN, 20));
@@ -122,7 +121,7 @@ public class Cad_Product {
         JButton btn_edit = new JButton("Editar");
         btn_edit.setFont(new Font("cortana", Font.PLAIN, 20));
         btn_edit.setBackground(Color.CYAN);
-        btn_edit.setBounds(600, 193, 130, 30);
+        btn_edit.setBounds(510, 210, 130, 30);
         window.add(btn_edit);
         
         final Product[] produtoParaEditar = new Product[1];
@@ -135,6 +134,7 @@ public class Cad_Product {
                 int idProcurado = Integer.parseInt(inputId);
                 produtoParaEditar[0] = null;
 
+    
                 for (Product p : List_Product) {
                     if (p.getId() == idProcurado) {
                         produtoParaEditar[0] = p;
@@ -210,10 +210,10 @@ public class Cad_Product {
             JButton btn_excluir = new JButton("Excluir");//criando o botão excluir 
             btn_excluir.setFont(new Font("cortana", Font.PLAIN, 20)); 
             btn_excluir.setBackground(Color.RED);//definindo a cor do botão 
-            btn_excluir.setBounds(600, 210, 130, 30);//definindo em qual posição encaixar o botão 
+            btn_excluir.setBounds(670, 210, 130, 30);//definindo em qual posição encaixar o botão 
             window.add(btn_excluir);//adicionando o botão a janela 
 
-          
+        
             //ação de excluir produto por ID 
             btn_excluir.addActionListener(new ActionListener() { 
             public void actionPerformed(ActionEvent e) { 
@@ -225,7 +225,7 @@ public class Cad_Product {
                 boolean removido = false;//inicialmente indica que nenhum produto foi removido, por isso retorna false, após a verificação do id,  produto ser removido será true 
 
               // percorre a lista de produtos 
-                 for (int i = 0; i < List_Product.size(); i++) { 
+                for (int i = 0; i < List_Product.size(); i++) { 
                     if (List_Product.get(i).getId() == idParaExcluir) {//bloco de código que verifica o id do produto 
                     List_Product.remove(i); // remove o produto da lista 
                     removido = true; 
@@ -263,7 +263,7 @@ public class Cad_Product {
                 JButton btn_limpar = new JButton("Limpar"); 
                 btn_limpar.setFont(new Font("cortana", Font.PLAIN, 20)); 
                 btn_limpar.setBackground(Color.YELLOW);//definindo a cor do botão 
-                btn_limpar.setBounds(600, 260, 130, 30);//definindo a posição do botão 
+                btn_limpar.setBounds(670, 160, 130, 30);//definindo a posição do botão 
                 window.add(btn_limpar);//adicionando o botão a janela 
 
             //ouvinte de ação que faz com que o botão limpar tenha funcionalidade 
@@ -271,13 +271,12 @@ public class Cad_Product {
                 public void actionPerformed(ActionEvent e) { 
                 text_field_1.setText("");//limpando o campo nome 
                 text_field_2.setText("");//limpando o campo preço 
-                text_field_3.setText("");//limpando o campo quantidade 
-    } 
+                text_field_3.setText("");//limpando o campo quantidade
+    }
 
 });
-        container.setBackground(Color.GRAY);
+        container.setBackground(Color.decode("#588157"));
         window.add(container);
-        
         window.setSize(1000,800);
         
         window.setVisible(true);
